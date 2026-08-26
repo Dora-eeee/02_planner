@@ -79,7 +79,5 @@
 
 ## 🌐 GitHub Pages 배포 주소
 
-> 아래에 GitHub Pages로 배포한 실행 주소를 넣어주세요.
-
-🔗 **[여기에 GitHub Pages URL을 입력하세요]**
+🔗 **[[여기에 GitHub Pages URL을 입력하세요](https://dora-eeee.github.io/02_planner/)]**
 
