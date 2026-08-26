@@ -6,17 +6,19 @@
   <title>Smart Campus Planner</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="app">
     <header class="app-header">
-      <div class="app-header-title">
-        <h1>Smart Campus Planner</h1>
-      </div>
-      <div class="app-header-side">
-        <span class="side-label">Today</span>
+      <span class="header-badge">✨ 집중하고 · 계획하고 · 실행하고 · 체크하고 · 반복하기 ✨</span>
+      <h1 class="header-title">Smart Campus Planner</h1>
+      <p class="header-subtitle">🌱 오늘의 작은 한 걸음이 내일의 큰 도약이 돼요</p>
+
+
+      <div class="header-today">
+        <span class="side-label">TODAY</span>
         <span id="today-date" class="side-value"></span>
       </div>
     </header>
@@ -24,7 +26,8 @@
     <main>
       <!-- 할 일 입력 영역 -->
       <section class="card form-card">
-        <h2>새 할 일 추가</h2>
+        <h2>✏️ 새 할 일 추가</h2>
+
         <form id="todo-form" novalidate>
           <div class="form-row">
             <label for="title">할 일 제목</label>
@@ -40,17 +43,20 @@
 
           <div class="form-grid">
             <div class="form-row">
-              <label for="category">카테고리</label>
+              <label for="category">🏷️ 카테고리</label>
+
               <select id="category" name="category" required>
                 <option value="" disabled selected>선택하세요</option>
-                <option value="dept">학과</option>
-                <option value="club">동아리</option>
+                <option value="class">수업</option>
+                <option value="project">프로젝트</option>
+                <option value="thesis">논문</option>
                 <option value="personal">개인</option>
               </select>
             </div>
 
             <div class="form-row">
-              <label for="priority">중요도</label>
+              <label for="priority">🚩 중요도</label>
+
               <select id="priority" name="priority" required>
                 <option value="" disabled selected>선택하세요</option>
                 <option value="high">상</option>
@@ -60,7 +66,8 @@
             </div>
 
             <div class="form-row">
-              <label for="dueDate">마감일</label>
+              <label for="dueDate">📅 마감일</label>
+
               <input type="date" id="dueDate" name="dueDate" required>
             </div>
           </div>
@@ -74,7 +81,8 @@
       <!-- 할 일 목록 영역 -->
       <section class="card list-card">
         <div class="list-header">
-          <h2>할 일 목록</h2>
+          <h2>📋 할 일 목록</h2>
+
           <span id="todo-count" class="todo-count">0개</span>
         </div>
 
@@ -94,7 +102,15 @@
         <ul id="todo-list" class="todo-list" hidden></ul>
       </section>
     </main>
+
+    <footer class="app-footer">
+      <span>🍀</span>
+      <p>한 번에 다 하지 않아도 괜찮아요. <span class="footer-highlight">지금, 딱 한 걸음만</span> 내딛어봐요.</p>
+      <span>🌟</span>
+    </footer>
+
   </div>
+
 
   <script src="script.js"></script>
 </body>

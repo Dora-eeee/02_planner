@@ -7,8 +7,9 @@ const STORAGE_KEY = "smartCampusPlanner.todos";
 
 // 화면에 표시할 카테고리/중요도 값 -> 라벨, 스타일 매핑
 const CATEGORY_LABELS = {
-  dept: "학과",
-  club: "동아리",
+  class: "수업",
+  project: "프로젝트",
+  thesis: "논문",
   personal: "개인",
 };
 
@@ -80,6 +81,15 @@ const prioritySelect = document.getElementById("priority");
 const dueDateInput = document.getElementById("dueDate");
 const formError = document.getElementById("form-error");
 
+// 마감일 입력 시 오늘 이전 날짜는 선택할 수 없도록 제한
+(function restrictDueDateToToday() {
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, "0");
+  const dd = String(now.getDate()).padStart(2, "0");
+  dueDateInput.min = yyyy + "-" + mm + "-" + dd;
+})();
+
 const todoList = document.getElementById("todo-list");
 const emptyMessage = document.getElementById("empty-message");
 const todoCount = document.getElementById("todo-count");
@@ -102,6 +112,13 @@ form.addEventListener("submit", function (event) {
     showFormError("제목, 카테고리, 중요도, 마감일을 모두 입력해주세요.");
     return;
   }
+
+  // 마감일이 오늘보다 이전이면 추가하지 않고 안내 문구를 보여줌
+  if (dueDate < dueDateInput.min) {
+    showFormError("마감일은 오늘 이후 날짜로만 선택할 수 있어요.");
+    return;
+  }
+
 
   hideFormError();
 

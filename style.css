@@ -1,19 +1,31 @@
 /* ===========================================================
-   Smart Campus Planner - "Weekly Planner" 톤앤매너 디자인
-   다크 브라운 + 피치/베이지 + 라이트 그레이 팔레트,
-   손글씨풍 스크립트 폰트(Gaegu) + 본문용 고딕(Nanum Gothic)
+   Smart Campus Planner - "Pastel Modern To-Do List" 톤앤매너 디자인
+   라벤더 · 옐로우 · 민트 · 블루 · 핑크 파스텔 팔레트,
+   모던 산세리프 폰트(Pretendard / Poppins), 부드러운 라운드 + 카드 UI
    =========================================================== */
 
 :root {
-  --color-brown: #5c4f47;
-  --color-brown-dark: #453a34;
-  --color-peach: #f3ddd2;
-  --color-peach-light: #f8ebe3;
-  --color-gray: #efefef;
-  --color-gray-line: #e2dcd6;
-  --color-text: #4a3f3a;
-  --color-text-soft: #8a7d76;
+  /* 파스텔 컬러 팔레트 */
+  --color-lavender: #d9d2f0;
+  --color-lavender-light: #ece8f9;
+  --color-yellow: #faedb8;
+  --color-yellow-light: #fcf6de;
+  --color-mint: #cdeee0;
+  --color-mint-light: #e6f7ef;
+  --color-blue: #cfe6f5;
+  --color-blue-light: #e7f3fa;
+  --color-pink: #f6d9e3;
+  --color-pink-light: #fbeef2;
+
+  --color-bg: #fbfaf8;
   --color-white: #ffffff;
+  --color-text: #3a3a45;
+  --color-text-soft: #8b8a99;
+  --color-border: #ece9f4;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
 }
 
 * {
@@ -22,8 +34,8 @@
 
 body {
   margin: 0;
-  font-family: "Nanum Gothic", "Malgun Gothic", sans-serif;
-  background: var(--color-peach-light);
+  font-family: "Pretendard", "Poppins", "Malgun Gothic", sans-serif;
+  background: var(--color-bg);
   color: var(--color-text);
   min-height: 100vh;
 }
@@ -31,118 +43,123 @@ body {
 .app {
   max-width: 760px;
   margin: 0 auto;
-  padding: 32px 20px 60px;
+  padding: 36px 20px 50px;
 }
 
-/* ---------- 헤더: 다크 브라운 타이틀 블록 + 피치 사이드 블록 ---------- */
+/* ---------- 헤더 ---------- */
 .app-header {
-  display: flex;
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 28px;
-  box-shadow: 0 6px 18px rgba(76, 63, 58, 0.15);
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 30px 20px 26px;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(80, 70, 120, 0.08);
+  position: relative;
 }
 
-.app-header-title {
-  flex: 1;
-  background: var(--color-brown);
-  padding: 26px 30px;
-  display: flex;
-  align-items: center;
+.header-badge {
+  display: inline-block;
+  background: var(--color-yellow);
+  color: #8a6d1f;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  margin-bottom: 14px;
 }
 
-.app-header-title h1 {
+.header-title {
   margin: 0;
-  font-family: "Gaegu", "Nanum Gothic", cursive, sans-serif;
-  font-weight: 700;
-  font-size: 34px;
-  color: var(--color-white);
-  letter-spacing: 0.5px;
+  font-family: "Poppins", "Pretendard", sans-serif;
+  font-weight: 800;
+  font-size: 38px;
+  color: var(--color-text);
+  letter-spacing: -0.5px;
 }
 
-.app-header-side {
-  width: 180px;
-  flex-shrink: 0;
-  background: var(--color-peach);
-  padding: 22px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-}
-
-.side-label {
-  font-family: "Gaegu", cursive, sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--color-brown-dark);
-}
-
-.side-value {
-  font-size: 13px;
-  font-weight: 700;
+.header-subtitle {
+  margin: 8px 0 0;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--color-text-soft);
 }
 
-@media (max-width: 520px) {
-  .app-header {
-    flex-direction: column;
-  }
-  .app-header-side {
-    width: auto;
-  }
+.header-today {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  background: var(--color-blue-light);
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+
+.side-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #4a7fa0;
+}
+
+.side-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text);
 }
 
 /* ---------- 카드 공통 ---------- */
 .card {
   background: var(--color-white);
-  border-radius: 14px;
-  padding: 24px;
+  border-radius: var(--radius-lg);
+  padding: 26px 24px;
   margin-bottom: 22px;
+  box-shadow: 0 6px 20px rgba(80, 70, 120, 0.06);
 }
 
 .card h2 {
   margin-top: 0;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   font-family: inherit;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--color-brown-dark);
+  color: var(--color-text);
 }
 
 /* ---------- 입력 폼 영역 ---------- */
 .form-row {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
   margin-bottom: 16px;
 }
 
 .form-row label {
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--color-text-soft);
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
 }
 
 .form-row input[type="text"],
 .form-row input[type="date"],
 .form-row select {
-  padding: 10px 12px;
-  border: none;
-  border-bottom: 2px solid var(--color-gray-line);
-  border-radius: 0;
+  padding: 11px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
   font-size: 14px;
   font-family: inherit;
-  background: transparent;
+  background: var(--color-bg);
   width: 100%;
   color: var(--color-text);
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 .form-row input:focus,
 .form-row select:focus {
   outline: none;
-  border-bottom-color: var(--color-brown);
+  border-color: var(--color-lavender);
+  background: var(--color-white);
 }
 
 .form-grid {
@@ -158,28 +175,32 @@ body {
 }
 
 .form-error {
-  color: #b3453c;
+  color: #d1637a;
   font-size: 13px;
   margin: -6px 0 12px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .btn-add {
   width: 100%;
-  padding: 12px;
-  background: var(--color-brown);
-  color: var(--color-white);
+  padding: 13px;
+  background: var(--color-yellow);
+  color: #7a5f16;
   border: none;
-  border-radius: 8px;
-  font-family: "Gaegu", cursive, sans-serif;
-  font-size: 17px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background 0.15s ease, transform 0.1s ease;
 }
 
 .btn-add:hover {
-  background: var(--color-brown-dark);
+  background: #f6de94;
+}
+
+.btn-add:active {
+  transform: scale(0.99);
 }
 
 /* ---------- 목록 영역 ---------- */
@@ -197,18 +218,18 @@ body {
 .todo-count {
   font-size: 12px;
   font-weight: 700;
-  color: var(--color-brown-dark);
-  background: var(--color-peach);
-  padding: 4px 12px;
+  color: #8a6d1f;
+  background: var(--color-yellow-light);
+  padding: 4px 14px;
   border-radius: 999px;
 }
 
 /* ---------- 완료율(진행률) 영역 ---------- */
 .progress-section {
   margin-bottom: 20px;
-  padding: 14px 16px;
-  background: var(--color-peach);
-  border-radius: 10px;
+  padding: 16px 18px;
+  background: #e7f3fa;
+  border-radius: var(--radius-md);
 }
 
 .progress-info {
@@ -216,15 +237,16 @@ body {
   align-items: center;
   justify-content: space-between;
   font-size: 13px;
-  font-weight: 800;
-  color: var(--color-brown-dark);
-  margin-bottom: 8px;
+  font-weight: 700;
+  color: #3a7ca5;
+  margin-bottom: 10px;
 }
 
 #progress-percent {
-  font-family: "Gaegu", cursive, sans-serif;
-  color: var(--color-brown);
+  font-family: inherit;
+  color: #3a7ca5;
   font-size: 18px;
+  font-weight: 800;
 }
 
 .progress-bar-track {
@@ -237,69 +259,72 @@ body {
 
 .progress-bar-fill {
   height: 100%;
-  background: var(--color-brown);
+  background: #7ab8dd;
   border-radius: 999px;
   transition: width 0.2s ease;
 }
 
 .progress-detail {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   font-size: 12px;
-  color: var(--color-text-soft);
-  font-weight: 700;
+  color: #5c98b8;
+  font-weight: 600;
 }
 
 .empty-message {
   color: var(--color-text-soft);
   font-size: 14px;
   text-align: center;
-  padding: 24px 0;
+  padding: 28px 0;
 }
 
-/* ---------- 할 일 목록: 이미지 속 To-do List의 "줄" 느낌 ---------- */
+/* ---------- 할 일 목록 ---------- */
 .todo-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .todo-item {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 14px 4px;
-  border-bottom: 2px solid var(--color-gray-line);
-  background: transparent;
+  padding: 14px 16px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-.todo-item:last-child {
-  border-bottom: none;
+.todo-item:hover {
+  border-color: var(--color-yellow);
 }
 
 .todo-item-completed {
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 .todo-checkbox {
   flex-shrink: 0;
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
   cursor: pointer;
-  accent-color: var(--color-brown);
+  accent-color: #d8b23a;
 }
 
 .todo-main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
   min-width: 0;
 }
 
 .todo-title {
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 700;
   color: var(--color-text);
   word-break: break-word;
@@ -312,11 +337,11 @@ body {
 
 .btn-delete {
   flex-shrink: 0;
-  padding: 6px 12px;
-  border: 1.5px solid var(--color-brown);
-  background: transparent;
-  color: var(--color-brown);
-  border-radius: 8px;
+  padding: 7px 14px;
+  border: none;
+  background: var(--color-pink-light);
+  color: #c14e6d;
+  border-radius: var(--radius-sm);
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
@@ -324,8 +349,8 @@ body {
 }
 
 .btn-delete:hover {
-  background: var(--color-brown);
-  color: var(--color-white);
+  background: var(--color-pink);
+  color: #a1385a;
 }
 
 .todo-tags {
@@ -338,43 +363,82 @@ body {
 .tag {
   display: inline-block;
   font-size: 11px;
-  font-weight: 800;
-  padding: 3px 10px;
+  font-weight: 700;
+  padding: 4px 11px;
   border-radius: 999px;
 }
 
-.tag-category-dept {
-  background: #e7dcd3;
-  color: var(--color-brown-dark);
+/* 카테고리: 각 카테고리마다 다른 색상 계열 (light 톤 배경 + 통일된 진한 텍스트) */
+.tag-category-class {
+  /* 수업: 초록 계열 */
+  background: #dcf3e6;
+  color: #2f8564;
 }
 
-.tag-category-club {
-  background: var(--color-peach);
-  color: #a15a2e;
+.tag-category-project {
+  /* 프로젝트: 보라 계열 */
+  background: var(--color-lavender-light);
+  color: #6b5fa8;
+}
+
+.tag-category-thesis {
+  /* 논문: 하늘색 계열 */
+  background: var(--color-blue-light);
+  color: #3a7ca5;
 }
 
 .tag-category-personal {
-  background: #ded7ce;
-  color: var(--color-text);
-}
-
-.tag-priority-high {
-  background: #f3d9d5;
-  color: #b3453c;
-}
-
-.tag-priority-mid {
-  background: #f4e6c9;
+  /* 개인: 노랑 계열 */
+  background: var(--color-yellow-light);
   color: #a3781f;
 }
 
+/* 중요도: light 톤 배경 + 통일된 진한 텍스트 (분홍 계열, 진하기로만 구분) */
+.tag-priority-high {
+  background: #fbe1e1;
+  color: #c14e4e;
+}
+
+.tag-priority-mid {
+  background: var(--color-pink-light);
+  color: #c14e6d;
+}
+
 .tag-priority-low {
-  background: #e6e3df;
-  color: var(--color-text-soft);
+  background: #fdf3f1;
+  color: #d1938e;
 }
 
 .todo-due {
   font-size: 12px;
   color: var(--color-text-soft);
+  font-weight: 600;
+}
+
+/* ---------- 푸터 ---------- */
+.app-footer {
+  margin-top: 28px;
+  text-align: center;
+  border: 1.5px dashed var(--color-border);
+  border-radius: 999px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: var(--color-white);
+}
+
+.app-footer p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-text-soft);
+  font-weight: 500;
+}
+
+.footer-highlight {
+  color: #a1385a;
   font-weight: 700;
+  text-decoration: underline;
 }
