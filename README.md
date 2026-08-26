@@ -79,5 +79,5 @@
 
 ## 🌐 GitHub Pages 배포 주소
 
-🔗 **[[여기에 GitHub Pages URL을 입력하세요](https://dora-eeee.github.io/02_planner/)]**
+🔗 **[(https://dora-eeee.github.io/02_planner/)]**
 
